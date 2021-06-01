@@ -21,40 +21,37 @@ function App() {
       .then(response=> setQuestions(response.results))
   }
  
-  // componentDidMount(){
-  //   fetch("http://localhost:3000/pokemon")
-  //   .then(res => res.json())
-  //   .then(transactions=> console.log(transactions))
-    
-  // }
-  
   return (
     <BrowserRouter>
     <div className="App">  
+
     <Header/>
+
     <Switch>
+
       <Route path='/' exact> 
-      <Home name = {name} setName = {setName} fetchQuestions = {fetchQuestions}/>
+        <Home name={name} setName={setName} fetchQuestions={fetchQuestions}/>
       </Route>
+
       <Route path='/quiz' exact> 
-      <Quiz
-      name = {name}
-      questions = {questions}
-      score = {score}
-      setScore = {setScore}
-      setQuestions ={setQuestions}
-      />
+        <Quiz
+          name={name}
+          questions={questions}
+          score={score}
+          setScore={setScore}
+          setQuestions={setQuestions}
+        />
       </Route>
+
       <Route path='/result' exact> 
-      <Result/>
+        <Result/>
       </Route>
+
     </Switch>
     </div>
     <Footer/>
     </BrowserRouter>
-  );
-  
+  )
 }
-
 
 export default App;
