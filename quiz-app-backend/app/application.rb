@@ -7,8 +7,13 @@ class Application
     if req.path.match(/test/) 
       return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
 
-    elsif req.path.match(//) && req.get?
-        return [200, { 'Content-Type' => 'application/json' }, [ Question.all.to_json ]]
+    elsif req.path.match(/quiz/) && req.get?
+
+      question_json = Question.all.to_json(:include => { :answer_category => {
+                                           :include => :incorrect_answers
+                                          } })
+      
+      return [200, { 'Content-Type' => 'application/json' }, [ question_json ]]
 
     else
       resp.write "Path Not Found"

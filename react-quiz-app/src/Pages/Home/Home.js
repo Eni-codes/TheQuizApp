@@ -5,8 +5,8 @@ import { useHistory } from "react-router";
 
 const Home = ({name, setName, fetchQuestions})=> {
      
-       const [number, setNumber] = useState(0);
-       const history = useHistory();
+  const [number, setNumber] = useState(0);
+  const history = useHistory();
 
   const handleclickSubmit = ()=> {
       fetchQuestions ();
