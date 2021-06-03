@@ -8,7 +8,6 @@ const Quiz = (p) => {
 
     return (
 
-        
         <div>
             <div className="splash">
                 <Scoreboard 
@@ -33,7 +32,6 @@ const Quiz = (p) => {
                     incorrectAnswer={p.incorrectAnswer}
                 /> )
             }
-
         </div>
     )
 }

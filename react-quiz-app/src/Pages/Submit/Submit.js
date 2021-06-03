@@ -37,22 +37,19 @@ class Submit extends Component {
 
     render() {
 
-        const idAndCategory = this.props.questions.map(q => q.answer_category).map(a_c => [a_c.id, a_c.answer_category])
         const idAndCategoryObj = this.props.questions.map(q => q.answer_category)
 
         const parseObj = idAndCategoryObj.map(JSON.stringify)
         const combineObj = new Set(parseObj)
         const arrayObj = Array.from(combineObj, JSON.parse)
 
-        const parseIAC = idAndCategory.map(JSON.stringify)
-        const combineIAC = new Set(parseIAC)
-        const arrayIAC = Array.from(combineIAC, JSON.parse)
+        const renderDropdownOption = () => {
+            return arrayObj.map(a => 
+                <option key={a.id} value={a.id}> {a.answer_category} </option>
+            )
+        }
 
-        // const renderDropdownOption
 
-
-
-        // debugger
         return (
             <div>
                 <div className="bg-secondary text-center p-4">
@@ -86,14 +83,11 @@ class Submit extends Component {
 
                         <div className="input-group mb-2 mr-sm-2">
                             <select 
-                                onChange={ (e) => this.setState({question_category_id: e.target.value}) }
+                                onChange={ (e) => this.setState({answer_category_id: e.target.value}) }
                                 value={ this.state.question_category_id }
                                 className="custom-select my-1 mr-sm-2">
-                                    {/* need to map question categories here */}
                                     <option selected>Question Category</option>
-                                    <option>placeholder</option>
-                                    <option>placeholder</option>
-                                    <option>placeholder</option>
+                                    { renderDropdownOption() }
                             </select>
                         </div>
                 
