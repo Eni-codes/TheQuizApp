@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Result = ()=> {
+const Results = ()=> {
     return <div>
       Result Page testingajkdfhgakjdfghdjkahfg
         </div>
 }
 
-export default Result
+export default Results
