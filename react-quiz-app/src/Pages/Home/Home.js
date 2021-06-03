@@ -5,8 +5,8 @@ import { useHistory } from "react-router";
 
 const Home = ({name, setName, fetchQuestions})=> {
      
-       const [number, setNumber] = useState(0);
-       const history = useHistory();
+  const [number, setNumber] = useState(0);
+  const history = useHistory();
 
   const handleclickSubmit = ()=> {
       fetchQuestions ();
@@ -42,7 +42,8 @@ const Home = ({name, setName, fetchQuestions})=> {
           </section>
           </div>
         </div>
-        <img src = "undraw_online_test_gba7.svg " classsname="banner" alt="quiz img"/>
+        <img src = "https://i.imgur.com/28gPvRj.png" classsname="banner" alt="quiz img"/>
+        {/* <img src = "undraw_online_test_gba7.svg" classsname="banner" alt="quiz img"/> */}
       </div>
     )
 };

@@ -1,6 +1,4 @@
 
-
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:ital,wght@0,200;1,200&display=swap');
 
@@ -12,6 +10,7 @@
 }
 .App {
   background-image: url(https://www.leadquizzes.com/wp-content/uploads/2019/02/New-blog-graphic.jpg);
+  /* background-image: url(https://i.imgur.com/pdZnNyt.jpg); */
   min-height: 98.5vh;
 }
 a {
@@ -84,39 +83,6 @@ a {
   justify-content: space-evenly;
 }
 
-
-/* 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.splash {
+  padding: 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */ 
