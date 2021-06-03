@@ -1,5 +1,6 @@
 const Scoreboard = ({ points, streak, lives, skips }) => {
 
+    
     return (
       <div className="jumbotron bg-secondary text-center">
           <div className="container">
@@ -16,3 +17,4 @@ const Scoreboard = ({ points, streak, lives, skips }) => {
   }
   
   export default Scoreboard
+  

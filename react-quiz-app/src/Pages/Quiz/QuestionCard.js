@@ -9,6 +9,16 @@ const Card = (p) => {
     const rand2 = arr[Math.floor(Math.random()*arr.length)]
     const rand3 = arr[Math.floor(Math.random()*arr.length)]
 
+    // const randomIndex = (r) => {
+    //     return Math.floor(Math.random() * r.lengtth)
+    // }
+
+    // for (var i = 0; i < 3; i++) {
+    //     const removedItem = arr.splice(randomIndex(arr), 1);
+    //     document.writeIn(removedItem)
+    // }
+
+
     return (
       <div className="card m-2 p-2">
         <div className="card-body">
@@ -32,4 +42,4 @@ const Card = (p) => {
     )
   }
   
-  export default Card
+export default Card

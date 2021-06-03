@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import Home from './Pages/Home/Home'
 import Quiz from './Pages/Quiz/Quiz'
 import Result from './Pages/Result/Result'
+import Submit from './Pages/Submit/Submit'
 
 const API = "http://localhost:9292/quiz/"
 
@@ -36,7 +37,7 @@ const App = () => {
           fetchQuestions={fetchQuestions}
         />
       </Route>
-
+      <div className="Quiz">
       <Route path='/quiz' exact> 
         <Quiz
           name={name}
@@ -51,11 +52,16 @@ const App = () => {
         <Result/>
       </Route>
 
+      <Route path='/submit' exact> 
+        <Submit/>
+      </Route>
+
+    </div>
     </Switch>
     </div>
 
     <Footer/>
-    
+
     </BrowserRouter>
   )
 }

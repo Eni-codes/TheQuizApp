@@ -10,6 +10,7 @@
 }
 .App {
   background-image: url(https://www.leadquizzes.com/wp-content/uploads/2019/02/New-blog-graphic.jpg);
+  /* background-image: url(https://i.imgur.com/pdZnNyt.jpg); */
   min-height: 98.5vh;
 }
 a {

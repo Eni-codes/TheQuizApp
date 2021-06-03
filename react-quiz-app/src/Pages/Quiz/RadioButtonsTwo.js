@@ -4,7 +4,7 @@ import { Component } from 'react'
 class RadioButtonsTwo extends Component {
 
     state = {
-        value: ""
+        value: null
     }
 
     handleChange = (e) => {
@@ -42,9 +42,16 @@ class RadioButtonsTwo extends Component {
                     type="submit"
                     onClick={() => {
                         if(this.state.value == this.props.correct_answer){
-                            return this.props.correctAnswer(this.state.value)
+                            const answer = this.state.value
+                            this.setState({value: null})
+                            return this.props.correctAnswer(answer)
+                        } else if(this.state.value === null) {
+                            this.setState({value: null})
+                            console.error("You must choose an answer!")
                         } else {
-                            return this.props.incorrectAnswer([this.state.value, this.props.correct_answer])
+                            const answer = this.state.value
+                            this.setState({value: null})
+                            return this.props.incorrectAnswer([answer, this.props.correct_answer])
                         }
                     }}
                     className="button p-1 m-1"

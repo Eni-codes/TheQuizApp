@@ -3,7 +3,7 @@ import React from 'react'
 
 const RadioButtons = (p) => {
 
-    const [value, setValue] = React.useState('incorrect')
+    const [value, setValue] = React.useState("")
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -27,9 +27,13 @@ const RadioButtons = (p) => {
                 type="submit"
                 onClick={() => {
                     if(value == p.correct_answer){
-                        return p.correctAnswer(value)
+                        const answer = value
+                        setValue("")
+                        return p.correctAnswer(answer)
                     } else {
-                        return p.incorrectAnswer([value, p.correct_answer])
+                        const answer = value
+                        setValue("")
+                        return p.incorrectAnswer([answer, p.correct_answer])
                     }
                 }}
                 className="button p-1 m-1"
@@ -46,4 +50,4 @@ const RadioButtons = (p) => {
     )
 }
   
-  export default RadioButtons
+export default RadioButtons

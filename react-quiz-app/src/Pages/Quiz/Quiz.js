@@ -52,6 +52,7 @@ class Quiz extends Component {
         const questionsCopy = [...this.state.questions]
         const questionMap = questionsCopy.slice(this.state.position, this.state.position + 1)
 
+        
         return (
 
           
