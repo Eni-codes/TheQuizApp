@@ -2,16 +2,17 @@ import React from 'react';
 import { Button, MenuItem, TextField } from "@material-ui/core";
 import { useState } from "react"
 import { useHistory } from "react-router";
+import { Link } from 'react-router-dom'
 
 const Home = ({name, setName, fetchQuestions})=> {
      
   const [number, setNumber] = useState(0);
   const history = useHistory();
 
-  const handleclickSubmit = ()=> {
-      fetchQuestions ();
-      history.push("/quiz");
-  }
+  // const handleclickSubmit = ()=> {
+  //     fetchQuestions ();
+  //     history.push("/quiz");
+  // }
 
     return (
       <div className= "content">
@@ -35,10 +36,13 @@ const Home = ({name, setName, fetchQuestions})=> {
           </section>
 
           <section>
-            <Button variant= "contained" color ="primary" size ="large"
-                    onClick={handleclickSubmit}>
-                    Start Quiz
-            </Button>
+            <Link to="/quiz">
+              <Button variant= "contained" color ="primary" size ="large"
+                      // onClick={handleclickSubmit}
+                      >
+                      Start Quiz
+              </Button>
+            </Link>
           </section>
           </div>
         </div>

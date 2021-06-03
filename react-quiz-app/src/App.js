@@ -1,69 +1,113 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import { useState } from "react";
+import { Component } from "react";
 import './App.css';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './Pages/Home/Home'
 import Quiz from './Pages/Quiz/Quiz'
-import Result from './Pages/Result/Result'
+import Result from './Pages/Results/Results'
 import Submit from './Pages/Submit/Submit'
 
 const API = "http://localhost:9292/quiz/"
 
-const App = () => {
+class App extends Component {
   
-  const [name, setName] = useState("");
-  const [questions, setQuestions] = useState();
-  const [score, setScore]= useState(0)
+    state = {
+        name: "",
+        questions: [],
+        position: 0,
+        score: 0,
+        points: 0,
+        streak: 1,
+        lives: 5,
+        skipsLeft: 3,
+        wasCorrect: null,
+        answer: ""
+    }
 
-  const fetchQuestions = () => {
-    fetch(API)
-      .then(r => r.json())
-      .then(r=> setQuestions(r.results))
-  }
- 
-  return (
-    <BrowserRouter>
-    <div className="App">  
+    componentDidMount() {
+        fetch(API)
+        .then(r => r.json())
+        .then(q=> this.setState({
+            questions: q
+        }))
+    }
 
-    <Header/>
+    correctAnswer = (e) => {this.setState({points: this.state.points + 10 * this.state.streak, 
+                                           streak: this.state.streak + 1, 
+                                           position: this.state.position + 1,
+                                           wasCorrect: true,
+                                           answer: e })}
 
-    <Switch>
+    incorrectAnswer = (e) => {this.setState({streak: 1, points: this.state.points -20, 
+                                             position: this.state.position + 1,
+                                             lives: this.state.lives - 1,
+                                             wasCorrect: false,
+                                             answer: e })}
 
-      <Route path='/' exact> 
-        <Home 
-          name={name} 
-          setName={setName} 
-          fetchQuestions={fetchQuestions}
-        />
-      </Route>
-      <div className="Quiz">
-      <Route path='/quiz' exact> 
-        <Quiz
-          name={name}
-          questions={questions}
-          score={score}
-          setScore={setScore}
-          setQuestions={setQuestions}
-        />
-      </Route>
+    skipQuestion = () => {this.setState({position: this.state.position + 1, 
+                                         skipsLeft: this.state.skipsLeft - 1 })}
 
-      <Route path='/result' exact> 
-        <Result/>
-      </Route>
+    gameOver = () => {
+        if(this.state.lives == 0){
+            console.log("the game is over")
+        }
+    }
 
-      <Route path='/submit' exact> 
-        <Submit/>
-      </Route>
 
-    </div>
-    </Switch>
-    </div>
+    render () {
 
-    <Footer/>
+        const questionsCopy = [...this.state.questions]
+        const questionMap = questionsCopy.slice(this.state.position, this.state.position + 1)
 
-    </BrowserRouter>
-  )
+
+        return (
+            <BrowserRouter>
+                <div className="App">  
+
+                    <Header/>
+
+                    <Switch>
+
+                    <Route path='/' exact> 
+                        <Home 
+                        // name={this.state.name} 
+                        />
+                    </Route>
+
+                    <Route path='/quiz' exact> 
+                        <Quiz
+                        questions={questionMap}
+                        position={this.state.position}
+                        score={this.state.score}
+                        points={this.state.points}
+                        streak={this.state.streak}
+                        lives={this.state.lives}
+                        skipsLeft={this.state.skipsLeft}
+                        wasCorrect={this.state.wasCorrect}
+                        answer={this.state.answer}
+                        correctAnswer={this.correctAnswer}
+                        incorrectAnswer={this.incorrectAnswer}
+                        skipQuestion={this.skipQuestion}
+                        />
+                    </Route>
+
+                    <Route path='/results' exact> 
+                        <Result/>
+                    </Route>
+
+                    <Route path='/submit' exact> 
+                        <Submit questions={this.state.questions}/>
+                    </Route>
+
+                    </Switch>
+                </div>
+
+                <Footer/>
+
+            </BrowserRouter>
+        )
+    }
 }
 
 export default App;
