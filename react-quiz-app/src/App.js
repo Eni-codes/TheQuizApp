@@ -9,6 +9,7 @@ import Result from './Pages/Results/Results'
 import Submit from './Pages/Submit/Submit'
 
 const API = "http://localhost:9292/quiz/"
+const APIResults ="http://localhost:9292/results/"
 
 class App extends Component {
   
