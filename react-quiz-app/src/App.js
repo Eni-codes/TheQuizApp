@@ -33,17 +33,21 @@ class App extends Component {
         }))
     }
 
+    setName = (name) => {this.setState({name: name})}
+
     correctAnswer = (e) => {this.setState({points: this.state.points + 10 * this.state.streak, 
                                            streak: this.state.streak + 1, 
                                            position: this.state.position + 1,
                                            wasCorrect: true,
-                                           answer: e })}
+                                           answer: e }, () => {
+                                           this.updateResults()})}
 
     incorrectAnswer = (e) => {this.setState({streak: 1, points: this.state.points -20, 
                                              position: this.state.position + 1,
                                              lives: this.state.lives - 1,
                                              wasCorrect: false,
-                                             answer: e })}
+                                             answer: e }, () => {
+                                             this.updateResults()})}
 
     skipQuestion = () => {this.setState({position: this.state.position + 1, 
                                          skipsLeft: this.state.skipsLeft - 1 })}
@@ -55,6 +59,27 @@ class App extends Component {
     }
 
     pushNewQuestion = (newQuestion) => this.setState({questions: [...this.state.questions, newQuestion]})
+
+    updateResults = () => {
+
+        const result = {
+            choice: this.state.answer,
+            was_correct: this.state.wasCorrect,
+            question_id: this.state.question,
+            score: this.state.points,
+            streak: this.state.streak
+        }
+        
+        const reqObj = {
+            headers: {"Content-Type": "application/json"},
+            method: "POST",
+            body: JSON.stringify(result)
+        }
+
+        fetch(APIResults, reqObj)
+            .then(r => r.json())     
+            .catch(() => alert("submit error"))
+    }
 
 
     render () {
@@ -74,7 +99,8 @@ class App extends Component {
 
                     <Route path='/' exact> 
                         <Home 
-                        // name={this.state.name} 
+                        name={this.state.name} 
+                        setName={this.setName}
                         />
                     </Route>
 
