@@ -1,9 +1,18 @@
 import React from 'react';
-
-const Results = ()=> {
+import Scoreboard from "./Pages/Quiz/Scoreboard"
+import { Component } from "react";
+class  Results extends Components {
+  render (){
     return <div>
-      GAME OVER
+      Game Over !!
+      <Scoreboard
+      points={p.points}
+      lives={p.lives}
+      skips={p.skipsLeft}
+      streak={p.streak}
+      />
+    
         </div>
 }
-
+}
 export default Results

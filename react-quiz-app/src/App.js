@@ -9,7 +9,11 @@ import Result from './Pages/Results/Results'
 import Submit from './Pages/Submit/Submit'
 
 const API = "http://localhost:9292/quiz/"
+<<<<<<< HEAD
 const APIResults = "http://localhost:9292/results/"
+=======
+const APIResults ="http://localhost:9292/results/"
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
 
 class App extends Component {
   
@@ -34,19 +38,31 @@ class App extends Component {
         }))
     }
 
+    setName = (name) => {this.setState({name: name})}
+
     correctAnswer = (e) => {this.setState({points: this.state.points + 10 * this.state.streak, 
                                            streak: this.state.streak + 1, 
                                            position: this.state.position + 1,
                                            wasCorrect: true,
+<<<<<<< HEAD
                                            answer: e },
                                            this.updateResults())}
+=======
+                                           answer: e }, () => {
+                                           this.updateResults()})}
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
 
     incorrectAnswer = (e) => {this.setState({streak: 1, points: this.state.points -20, 
                                              position: this.state.position + 1,
                                              lives: this.state.lives - 1,
                                              wasCorrect: false,
+<<<<<<< HEAD
                                              answer: e },
                                              this.updateResults())}
+=======
+                                             answer: e }, () => {
+                                             this.updateResults()})}
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
 
     skipQuestion = () => {this.setState({position: this.state.position + 1, 
                                          skipsLeft: this.state.skipsLeft - 1 })}
@@ -70,6 +86,7 @@ class App extends Component {
             score: this.state.points,
             streak: this.state.streak
         }
+<<<<<<< HEAD
 
         // const result = {
         //     choice: "nope",
@@ -78,13 +95,18 @@ class App extends Component {
         //     score: 999,
         //     streak: 5
         // }
+=======
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
         
         const reqObj = {
             headers: {"Content-Type": "application/json"},
             method: "POST",
             body: JSON.stringify(result)
         }
+<<<<<<< HEAD
         // debugger
+=======
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
 
         fetch(APIResults, reqObj)
             .then(r => r.json())     
@@ -110,6 +132,10 @@ class App extends Component {
                     <Route path='/' exact> 
                         <Home 
                         name={this.state.name} 
+<<<<<<< HEAD
+=======
+                        setName={this.setName}
+>>>>>>> c1e80c4df8a83670495120f5e8b55914799a1618
                         />
                     </Route>
 
