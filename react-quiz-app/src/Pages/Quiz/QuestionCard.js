@@ -1,4 +1,5 @@
 import RadioButtonsTwo from './RadioButtonsTwo'
+import "./Quiz.css"
 
 const Card = (p) => {
 
@@ -19,13 +20,13 @@ const Card = (p) => {
 
 
   return (
-    <div className="card m-2 p-2">
+    <div className="card-container">
       <div className="card-body">
-          <h2 className="card-title">Question #{ p.id }: { p.question }?</h2>
-          <h3 className="card-title">Category: { p.answer_category.answer_category }</h3>
-          <p className="card-text">Points: { p.points }</p>
-
-          <RadioButtonsTwo
+      <p className="card-cat">Category: { p.answer_category.answer_category }</p>
+          <h2 className="card-title">Question { p.id }: { p.question }?</h2>
+          
+        <div className="card-title">
+           <RadioButtonsTwo
               correct_answer={p.correct_answer}
               answer_category={p.answer_category}
               correctAnswer={p.correctAnswer}
@@ -37,6 +38,10 @@ const Card = (p) => {
               rand3={rand3}
           />
       </div>
+      <div>
+          <p className="card-text">Points: { p.points }</p>
+          </div>
+    </div>
     </div>
   )
 }

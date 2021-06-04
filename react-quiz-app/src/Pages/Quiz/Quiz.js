@@ -17,7 +17,7 @@ const Quiz = (p) => {
                     streak={p.streak}
                 />
             </div>
-
+            <div>
             { p.questions.map(q => 
                 <QuestionCard 
                     key={q.id}
@@ -32,6 +32,7 @@ const Quiz = (p) => {
                     incorrectAnswer={p.incorrectAnswer}
                 /> )
             }
+            </div>
         </div>
     )
 }

@@ -3,11 +3,14 @@ import { Button, MenuItem, TextField } from "@material-ui/core";
 import { useState } from "react"
 import { useHistory } from "react-router";
 import { Link } from 'react-router-dom'
+import "./Home.css";
+import { blue } from '@material-ui/core/colors';
 
 const Home = ({name, setName, fetchQuestions})=> {
      
   const [number, setNumber] = useState(0);
   const history = useHistory();
+  
 
   // const handleclickSubmit = ()=> {
   //     fetchQuestions ();
@@ -17,7 +20,8 @@ const Home = ({name, setName, fetchQuestions})=> {
     return (
       <div className= "content">
         <div className = "Settings">
-          <span style ={{ fontSize: 30}}>Quiz Settings</span>
+          <span style ={{ fontSize: 25,
+          fontColor: blue}}>Quiz Settings</span>
           <div>
           <TextField
             style={{ marginBottom: 25 }}
@@ -26,16 +30,18 @@ const Home = ({name, setName, fetchQuestions})=> {
             onChange={(e)=> setName(e.target.value)}
           />
 
-          <section>
-            <select id = "dropdown" onChange = {(e)=> setNumber(e.target.value)}>
+          <div className="search_categories">
+              <div className = "select">
+            <select name = "search_categories" id = "search_categories" onChange = {(e)=> setNumber(e.target.value)}   style={{ marginBottom: 30 }}>
               <option value = "n/a">Difficulty</option>
               <option value = "1">Easy</option>
               <option value = "2">Medium</option>
               <option value = "3">Hard</option>
             </select>
-          </section>
+            </div>
+          </div>
 
-          <section>
+          <div>
             <Link to="/quiz">
               <Button variant= "contained" color ="primary" size ="large"
                       // onClick={handleclickSubmit}
@@ -43,7 +49,7 @@ const Home = ({name, setName, fetchQuestions})=> {
                       Start Quiz
               </Button>
             </Link>
-          </section>
+          </div>
           </div>
         </div>
         <img src = "https://i.imgur.com/28gPvRj.png" classsname="banner" alt="quiz img"/>
