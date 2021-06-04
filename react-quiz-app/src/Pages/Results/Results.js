@@ -2,7 +2,7 @@ import React from 'react';
 
 const Results = ()=> {
     return <div>
-      Result Page testingajkdfhgakjdfghdjkahfg
+      GAME OVER
         </div>
 }
 

@@ -18,15 +18,19 @@ p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   .card-text{
-      justify-content:center ;
-      font-variant: inherit;
-      font-size: 25px;
-      color: purple;
+    justify-content:center ;
+    font-variant: inherit;
+    font-size: 25px;
+    color: purple;
   }
   .card-container {
     align-content: center; 
   }
   .button p-1 m-1{
   color: rgba(255, 0, 76, 0.897);
+  }
+
+  .QuizCard p-5 m-5{
+    justify-content: center;
   }
   

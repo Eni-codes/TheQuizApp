@@ -9,14 +9,15 @@ import Result from './Pages/Results/Results'
 import Submit from './Pages/Submit/Submit'
 
 const API = "http://localhost:9292/quiz/"
+const APIResults = "http://localhost:9292/results/"
 
 class App extends Component {
   
     state = {
         name: "",
         questions: [],
+        question: 0,
         position: 0,
-        score: 0,
         points: 0,
         streak: 1,
         lives: 5,
@@ -37,13 +38,15 @@ class App extends Component {
                                            streak: this.state.streak + 1, 
                                            position: this.state.position + 1,
                                            wasCorrect: true,
-                                           answer: e })}
+                                           answer: e },
+                                           this.updateResults())}
 
     incorrectAnswer = (e) => {this.setState({streak: 1, points: this.state.points -20, 
                                              position: this.state.position + 1,
                                              lives: this.state.lives - 1,
                                              wasCorrect: false,
-                                             answer: e })}
+                                             answer: e },
+                                             this.updateResults())}
 
     skipQuestion = () => {this.setState({position: this.state.position + 1, 
                                          skipsLeft: this.state.skipsLeft - 1 })}
@@ -54,7 +57,39 @@ class App extends Component {
         }
     }
 
+    updateQuestion = (question) => this.setState({question: question})
+
     pushNewQuestion = (newQuestion) => this.setState({questions: [...this.state.questions, newQuestion]})
+
+    updateResults = () => {
+
+        const result = {
+            choice: this.state.answer,
+            was_correct: this.state.wasCorrect,
+            question_id: this.state.question,
+            score: this.state.points,
+            streak: this.state.streak
+        }
+
+        // const result = {
+        //     choice: "nope",
+        //     was_correct: false,
+        //     question_id: 2,
+        //     score: 999,
+        //     streak: 5
+        // }
+        
+        const reqObj = {
+            headers: {"Content-Type": "application/json"},
+            method: "POST",
+            body: JSON.stringify(result)
+        }
+        // debugger
+
+        fetch(APIResults, reqObj)
+            .then(r => r.json())     
+            .catch(() => alert("submit error"))
+    }
 
 
     render () {
@@ -74,7 +109,7 @@ class App extends Component {
 
                     <Route path='/' exact> 
                         <Home 
-                        // name={this.state.name} 
+                        name={this.state.name} 
                         />
                     </Route>
 
@@ -82,7 +117,6 @@ class App extends Component {
                         <Quiz
                             questions={questionMap}
                             position={this.state.position}
-                            score={this.state.score}
                             points={this.state.points}
                             streak={this.state.streak}
                             lives={this.state.lives}
@@ -92,6 +126,8 @@ class App extends Component {
                             correctAnswer={this.correctAnswer}
                             incorrectAnswer={this.incorrectAnswer}
                             skipQuestion={this.skipQuestion}
+                            updateQuestion={this.updateQuestion}
+                            updateResults={this.updateResults}
                         />  
                     </Route>
 

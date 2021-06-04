@@ -1,4 +1,4 @@
-import RadioButtonsTwo from './RadioButtonsTwo'
+import RadioButtons from './RadioButtons'
 import "./Quiz.css"
 
 const Card = (p) => {
@@ -48,20 +48,20 @@ const Card = (p) => {
   //   return arr2[indexArr]
   // }
 
-  for (let prop in arr2) {
-    let array = []
-    console.log(arr2[prop].incorrect_answer)
-  }
+  // for (let prop in arr2) {
+  //   let array = []
+  //   console.log(arr2[prop].incorrect_answer)
+  // }
 
   // debugger
   return (
     <div className="card-container">
       <div className="card-body">
       <p className="card-cat">Category: { p.answer_category.answer_category }</p>
-          <h2 className="card-title">Question { p.id }: { p.question }?</h2>
+          <h2 className="card-title">Question { p.question_id }: { p.question }?</h2>
           
         <div className="card-title">
-           <RadioButtonsTwo
+           <RadioButtons
               correct_answer={p.correct_answer}
               answer_category={p.answer_category}
               correctAnswer={p.correctAnswer}
@@ -71,6 +71,9 @@ const Card = (p) => {
               rand1={rand1}
               rand2={rand2}
               rand3={rand3}
+              question_id={p.question_id}
+              updateQuestion={p.updateQuestion}
+              updateResults={p.updateResults}
           />
       </div>
       <div>
