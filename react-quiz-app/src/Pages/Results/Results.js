@@ -1,18 +1,22 @@
 import React from 'react';
-import Scoreboard from "./Pages/Quiz/Scoreboard"
+import Scoreboard from "../Quiz/Scoreboard"
 import { Component } from "react";
-class  Results extends Components {
+
+class  Results extends Component {
+
   render (){
-    return <div>
+
+    return (
+    <div>
       Game Over !!
       <Scoreboard
-      points={p.points}
-      lives={p.lives}
-      skips={p.skipsLeft}
-      streak={p.streak}
+      points={this.props.points}
+      lives={this.props.lives}
+      skips={this.props.skipsLeft}
+      streak={this.props.streak}
       />
-    
-        </div>
-}
+      </div>
+    )
+  }
 }
 export default Results
