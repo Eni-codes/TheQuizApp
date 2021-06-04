@@ -27,13 +27,13 @@ puts "Creating some choices..."
 end
 
 puts "Creating some incorrect answers..."
-50.times do
+200.times do
     IncorrectAnswer.create(incorrect_answer: Faker::String.random(length: 3..25),
                             answer_category_id: rand(1..5))
 end
 
 puts "Creating some answer categories..."
-5.times do
+10.times do
     AnswerCategory.create(answer_category: Faker::Space.planet)
 end
 
