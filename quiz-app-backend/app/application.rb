@@ -19,6 +19,11 @@ class Application
     elsif req.path.match(/result/) && req.get?
         return [200, { 'Content-Type' => 'application/json' }, [ Choice.all.to_json ]]
 
+    elsif req.path.match(/submit/) && req.post?
+        question_hash = JSON.parse(req.body.read)
+        new_question = Question.create(question_hash)
+        return [201, { 'Content-Type' => 'application/json' }, [ new_question.to_json ]] 
+
     else
         resp.write "Path Not Found"
 
