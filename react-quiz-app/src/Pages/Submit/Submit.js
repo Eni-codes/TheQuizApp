@@ -22,8 +22,8 @@ class Submit extends Component {
 
         fetch(API, reqObj)
             .then(r => r.json())
-            .then((newQuestion) => {
-                this.props.pushNewMenuItem(newQuestion)
+            .then((newQ) => {
+                this.props.pushNewQuestion(newQ)
                 this.setState({
                     question_content: "",
                     points: 10,

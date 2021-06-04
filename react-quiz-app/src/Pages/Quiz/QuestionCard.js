@@ -4,10 +4,13 @@ import "./Quiz.css"
 const Card = (p) => {
 
   const arr = p.answer_category.incorrect_answers.map(i_a => i_a.incorrect_answer)
+  const arr2 = p.answer_category.incorrect_answers
 
   const rand1 = arr[Math.floor(Math.random()*arr.length)]
   const rand2 = arr[Math.floor(Math.random()*arr.length)]
   const rand3 = arr[Math.floor(Math.random()*arr.length)]
+
+  // const randomArr = arr.sort(() => .5 - Math.random())
 
   // const randomIndex = (r) => {
   //     return Math.floor(Math.random() * r.lengtth)
@@ -18,7 +21,39 @@ const Card = (p) => {
   //     document.writeIn(removedItem)
   // }
 
+  // const x = 3
+  // const n = arr.length
 
+  // const randomInts = (x, n) => {
+  //   const array = []
+  //   while(array.length < x) {
+  //     const posInt = Math.floor(Math.random() * n) + 1
+  //     if(array.indexOf(posInt) === -1) array.push(posInt)
+  //   }
+  //   return array
+  // } 
+
+  // const newArr = []
+
+  // const randSamp = (arr2) => {
+  //   if(newArr.length < 3) {
+  //     for (const i = 0; i < 3; i++) newArr.push(i)
+  //   }
+  //   const randInt = Math.floor(Math.random() * newArr.length)
+
+  //   const indexArr = newArr[randInt]
+
+  //   newArr.splice(randInt, 1)
+    
+  //   return arr2[indexArr]
+  // }
+
+  for (let prop in arr2) {
+    let array = []
+    console.log(arr2[prop].incorrect_answer)
+  }
+
+  // debugger
   return (
     <div className="card-container">
       <div className="card-body">

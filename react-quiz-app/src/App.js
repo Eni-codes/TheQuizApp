@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from "react-router-dom"
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom"
 import { Component } from "react";
 import './App.css';
 import Header from './components/Header/Header'
@@ -54,8 +54,11 @@ class App extends Component {
         }
     }
 
+    pushNewQuestion = (newQuestion) => this.setState({questions: [...this.state.questions, newQuestion]})
+
 
     render () {
+    
 
         const questionsCopy = [...this.state.questions]
         const questionMap = questionsCopy.slice(this.state.position, this.state.position + 1)
@@ -77,19 +80,19 @@ class App extends Component {
 
                     <Route path='/quiz' exact> 
                         <Quiz
-                        questions={questionMap}
-                        position={this.state.position}
-                        score={this.state.score}
-                        points={this.state.points}
-                        streak={this.state.streak}
-                        lives={this.state.lives}
-                        skipsLeft={this.state.skipsLeft}
-                        wasCorrect={this.state.wasCorrect}
-                        answer={this.state.answer}
-                        correctAnswer={this.correctAnswer}
-                        incorrectAnswer={this.incorrectAnswer}
-                        skipQuestion={this.skipQuestion}
-                        />
+                            questions={questionMap}
+                            position={this.state.position}
+                            score={this.state.score}
+                            points={this.state.points}
+                            streak={this.state.streak}
+                            lives={this.state.lives}
+                            skipsLeft={this.state.skipsLeft}
+                            wasCorrect={this.state.wasCorrect}
+                            answer={this.state.answer}
+                            correctAnswer={this.correctAnswer}
+                            incorrectAnswer={this.incorrectAnswer}
+                            skipQuestion={this.skipQuestion}
+                        />  
                     </Route>
 
                     <Route path='/results' exact> 
@@ -97,11 +100,14 @@ class App extends Component {
                     </Route>
 
                     <Route path='/submit' exact> 
-                        <Submit questions={this.state.questions}/>
+                        <Submit 
+                            questions={this.state.questions}
+                            pushNewQuestion={this.pushNewQuestion}
+                        />
                     </Route>
 
                     </Switch>
-                </div>
+                </div>  
 
                 <Footer/>
 
